@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const logo = '/prime-crackers-logo.png';
+const whatsappUrl = 'https://wa.me/919000000000?text=Hello%20Prime%20Crackers%2C%20I%20would%20like%20help%20with%20an%20order.';
 
 const collections = [
   { number: '01', icon: '✺', title: 'Festive Favourites', description: 'Classic crackers and colourful effects for a joyful family celebration.', action: 'Discover the range', tone: 'card-amber' },
@@ -67,8 +68,13 @@ export default function App() {
         </section>
         <section id="safety" className="safety"><div className="safety-inner section-shell"><p className="eyebrow">Celebrate responsibly</p><h2>Good celebrations leave<br />only happy memories.</h2><div className="safety-points"><p><span>✓</span> Follow all package instructions carefully.</p><p><span>✓</span> Use fireworks outdoors in an open, clear area.</p><p><span>✓</span> Keep water nearby and supervise children at all times.</p></div></div></section>
         <section id="contact" className="contact section-shell"><div><p className="eyebrow dark">Let’s celebrate</p><h2>Planning something special?</h2><p>Tell us the occasion and your preferred celebration style. We’ll help you find a suitable pack.</p></div><div className="contact-card"><p className="contact-label">Call or WhatsApp</p><a href="tel:+919000000000">+91 90000 00000</a><p className="contact-label">Email</p><a href="mailto:hello@primecrackers.in">hello@primecrackers.in</a><p className="contact-note">Sample contact details — replace with your business information before launch.</p></div></section>
+        <section className="legal-section section-shell" aria-label="Legal information">
+          <article id="privacy-policy" className="legal-card"><p className="eyebrow dark">Your information</p><h2>Privacy Policy</h2><p>We use the contact details and order enquiries you share with us only to respond to your request, arrange orders, and provide customer support. We do not sell your personal information.</p><p>We keep information only for as long as needed for service, records, or legal obligations. To request an update or deletion of your details, contact us at <a href="mailto:hello@primecrackers.in">hello@primecrackers.in</a>.</p></article>
+          <article id="terms-conditions" className="legal-card"><p className="eyebrow dark">Please read</p><h2>Terms &amp; Conditions</h2><p>Products are supplied subject to availability and applicable law. Please follow all label instructions, use products only as intended, and ensure adult supervision where required.</p><p>Prices, assortments, and delivery availability may change. An order is confirmed only after our team confirms the product, price, and delivery details with you.</p></article>
+        </section>
       </main>
-      <footer className="site-footer"><Brand footer /><p>Celebrations, thoughtfully lit.</p><p className="copyright">© {new Date().getFullYear()} Prime Crackers. All rights reserved.</p></footer>
+      <footer className="site-footer"><Brand footer /><p>Celebrations, thoughtfully lit.<br /><a className="footer-link" href="#privacy-policy">Privacy Policy</a><span className="footer-divider">•</span><a className="footer-link" href="#terms-conditions">Terms &amp; Conditions</a></p><p className="copyright">© {new Date().getFullYear()} Prime Crackers. All rights reserved.</p></footer>
+      <a className="whatsapp-button" href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="Chat with Prime Crackers on WhatsApp"><span aria-hidden="true">◔</span><b>WhatsApp</b></a>
     </>
   );
 }
