@@ -40,7 +40,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
   const path = window.location.pathname.replace(/\/$/, '') || '/';
-  useEffect(() => { const meta = pageMetadata[path]; if (meta) { document.title = meta[0]; document.querySelector('meta[name="description"]')?.setAttribute('content', meta[1]); } }, [path]);
+  useEffect(() => { const meta = pageMetadata[path] || ['Prime Crackers | Sivakasi Crackers Online | Chennai, Tiruvallur, Kanchi, Chengalpattu', 'Buy authentic Sivakasi fireworks online at wholesale prices. Doorstep delivery across Chennai, Tiruvallur, Kanchipuram, and Chengalpattu districts.']; document.title = meta[0]; document.querySelector('meta[name="description"]')?.setAttribute('content', meta[1]); document.querySelector('meta[property="og:title"]')?.setAttribute('content', meta[0]); document.querySelector('meta[property="og:description"]')?.setAttribute('content', meta[1]); document.querySelector('meta[property="og:url"]')?.setAttribute('content', `https://prime-crackers-mu.vercel.app${path === '/' ? '/' : path}`); }, [path]);
   if (path === '/about-us') return <InformationPage type="about" />;
   if (path === '/faq') return <InformationPage type="faq" />;
 

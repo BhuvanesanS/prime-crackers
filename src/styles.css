@@ -14,7 +14,7 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; color: var(--ink); background: var(--cream); font-family: "DM Sans", Arial, sans-serif; }
 a { color: inherit; text-decoration: none; }
-.announcement-bar { background: var(--ink); color: var(--gold-light); text-align: center; padding: .7rem 1rem; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+.announcement-bar { position: sticky; top: 0; z-index: 30; background: var(--ink); color: var(--gold-light); text-align: center; padding: .7rem 1rem; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
 .announcement-bar p { margin: 0; }
 .site-header { width: min(1180px, calc(100% - 3rem)); min-height: 86px; margin: auto; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 4; }
 .brand { display: inline-flex; align-items: center; gap: .7rem; font-family: "Playfair Display", Georgia, serif; font-size: 1.12rem; font-weight: 800; letter-spacing: .03em; line-height: .78; }
