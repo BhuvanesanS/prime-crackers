@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const logo = '/prime-crackers-logo.png';
 const whatsappUrl = 'https://wa.me/919384006200?text=Hi%20Prime%20Crackers%2C%20I%20want%20to%20order%20crackers%20for%20delivery%20in%20[My%20District].';
@@ -25,9 +25,24 @@ function Brand({ footer = false }) {
   );
 }
 
+const pageMetadata = {
+  '/about-us': ['About Prime Crackers | Sivakasi Fireworks Delivery', 'Learn about Prime Crackers and our licensed Sivakasi wholesale-distributor delivery support across Chennai, Tiruvallur, Kanchipuram, and Chengalpattu.'],
+  '/faq': ['Safety Guidelines & FAQs | Prime Crackers', 'Read Prime Crackers safety guidance, ordering help, minimum-order rules, and four-district delivery FAQs.'],
+};
+
+function InformationPage({ type }) {
+  const isAbout = type === 'about';
+  const title = isAbout ? 'About Prime Crackers' : 'Safety Guidelines & FAQs';
+  return <><div className="announcement-bar"><p>Direct Sivakasi Factory Rates | Express Delivery Across Chennai, Tiruvallur, Kanchipuram &amp; Chengalpattu | Min. Order ₹2,000</p></div><header className="site-header"><Brand /><nav className="main-nav open"><a href="/">Home</a><a href="/about-us">About us</a><a href="/faq">Safety &amp; FAQs</a><a className="nav-contact" href={whatsappUrl}>WhatsApp order <span>↗</span></a></nav></header><main className="info-page section-shell"><p className="eyebrow dark">Prime Crackers</p><h1>{title}</h1>{isAbout ? <><p className="intro">Prime Crackers is an order-estimation and inquiry portal for authentic Sivakasi fireworks, serving Chennai, Tiruvallur, Kanchipuram, and Chengalpattu through licensed wholesale distributors and authorized local delivery networks.</p><div className="about-grid"><div><h2>Our focus</h2><p>We help customers find genuine, high-quality celebration products at factory-linked wholesale rates, with careful packaging and a clear local confirmation process before delivery.</p></div><div><h2>Why choose us?</h2><ul><li>Licensed Sivakasi manufacturer sourcing.</li><li>Dedicated delivery across four covered districts.</li><li>Green-cracker options subject to availability and law.</li><li>Heavy-duty corrugated packaging for safer transit.</li></ul></div></div></> : <><section className="safety-copy"><h2>Celebrate responsibly</h2><ul><li>Read and follow every package instruction.</li><li>Use fireworks outdoors in a clear, open area.</li><li>Keep water nearby and supervise children.</li><li>Use only lawful products and follow local time and safety restrictions.</li></ul></section><section className="faq"><details open><summary>Which areas do you deliver to?</summary><p>Only Chennai, Tiruvallur, Kanchipuram, and Chengalpattu districts.</p></details><details><summary>How do I place an order?</summary><p>Browse, create an estimate, submit your district and contact details, and wait for stock and delivery confirmation by WhatsApp or call.</p></details><details><summary>What is the minimum order value?</summary><p>₹2,000 for delivery in our four-district coverage zone.</p></details><details><summary>How long does delivery take?</summary><p>Usually 2 to 4 business days after confirmation, subject to stock, transport schedules, and regional regulations.</p></details></section></>}</main><footer className="site-footer"><Brand footer /><p className="footer-disclaimer"><strong>Disclaimer &amp; Regulatory Compliance:</strong> As per statutory guidelines, this platform operates as an order estimation and inquiry facilitation portal for licensed Sivakasi wholesale distributors serving Chennai, Tiruvallur, Kanchipuram, and Chengalpattu districts. All orders are fulfilled safely via authorized local transport and delivery networks in compliance with regional regulations.</p></footer><a className="whatsapp-button" href={whatsappUrl} target="_blank" rel="noreferrer"><span aria-hidden="true">◔</span><b>WhatsApp</b></a></>;
+}
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  useEffect(() => { const meta = pageMetadata[path]; if (meta) { document.title = meta[0]; document.querySelector('meta[name="description"]')?.setAttribute('content', meta[1]); } }, [path]);
+  if (path === '/about-us') return <InformationPage type="about" />;
+  if (path === '/faq') return <InformationPage type="faq" />;
 
   return (
     <>
@@ -38,8 +53,8 @@ export default function App() {
         <nav className={`main-nav${isMenuOpen ? ' open' : ''}`} aria-label="Main navigation">
           <a href="#collections" onClick={closeMenu}>Collections</a>
           <a href="#why-prime" onClick={closeMenu}>Why Prime</a>
-          <a href="#about-us" onClick={closeMenu}>About us</a>
-          <a href="#faq" onClick={closeMenu}>FAQs</a>
+          <a href="/about-us" onClick={closeMenu}>About us</a>
+          <a href="/faq" onClick={closeMenu}>FAQs</a>
           <a href="#safety" onClick={closeMenu}>Safety</a>
           <a className="nav-contact" href="#contact" onClick={closeMenu}>Contact us <span>↗</span></a>
         </nav>
